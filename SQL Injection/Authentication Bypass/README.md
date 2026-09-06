@@ -5,8 +5,8 @@ While testing the login page of the BookShelf application, I found that the
 username field is vulnerable to SQL Injection. This allows an attacker to
 bypass authentication without knowing a valid username or password.
 
-**Target:** `http://192.168.112.8:8080/BookShelf/index.jsp`
-**Vulnerability:** Authentication Bypass via SQL Injection
+**Target:** `http://192.168.112.8:8080/BookShelf/index.jsp`  
+**Vulnerability:** Authentication Bypass via SQL Injection  
 **Field affected:** Username
 
 ---
@@ -17,26 +17,26 @@ bypass authentication without knowing a valid username or password.
 I entered a basic SQL injection payload in the username field to see how
 the app handled special characters:
 
-```
+```sql
 ' OR '1'='1
 ```
 
 I left the password field as-is (any value works here since the query
 gets bypassed).
 
-![Login form with payload](/SQL%20Injection/Authentication%20Bypass/images/01-login-payload.png)
+![Login form with payload](01-login-payload.png)
 
 ### 2. Result — Login Bypassed
 Clicking Login logged me straight in without valid credentials. The
 welcome page even reflects the raw payload back as the "username", which
 confirms the input isn't being sanitized or validated at all.
 
-![Successful bypass](/SQL%20Injection/Authentication%20Bypass/images/02-bypass-success.png)
+![Successful bypass](02-bypass-success.png)
 
 ### 3. Confirming It's a Real Injection (not a fluke)
 To rule out coincidence, I tried a second, logically different payload:
 
-```
+```sql
 ' OR '1'!='2
 ```
 
@@ -45,9 +45,9 @@ than the first payload. Since it produced the exact same result (successful
 login, bypassing auth), it confirms the backend is directly concatenating
 user input into a SQL query rather than treating it as a parameter.
 
-![Second payload in login form](/SQL%20Injection/Authentication%20Bypass/images/03-second-payload.png)
+![Second payload in login form](03-second-payload.png)
 
-![Second successful bypass](/SQL%20Injection/Authentication%20Bypass/images/04-second-bypass.png)
+![Second successful bypass](04-second-bypass.png)
 
 ---
 
