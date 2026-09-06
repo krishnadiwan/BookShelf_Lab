@@ -24,14 +24,14 @@ the app handled special characters:
 I left the password field as-is (any value works here since the query
 gets bypassed).
 
-![Login form with payload](./images/01-login-payload.png)
+![Login form with payload](/SQL%20Injection/Authentication%20Bypass/images/01-login-payload.png)
 
 ### 2. Result — Login Bypassed
 Clicking Login logged me straight in without valid credentials. The
 welcome page even reflects the raw payload back as the "username", which
 confirms the input isn't being sanitized or validated at all.
 
-![Successful bypass](./images/02-bypass-success.png)
+![Successful bypass](/SQL%20Injection/Authentication%20Bypass/images/02-bypass-success.png)
 
 ### 3. Confirming It's a Real Injection (not a fluke)
 To rule out coincidence, I tried a second, logically different payload:
@@ -45,9 +45,9 @@ than the first payload. Since it produced the exact same result (successful
 login, bypassing auth), it confirms the backend is directly concatenating
 user input into a SQL query rather than treating it as a parameter.
 
-![Second payload in login form](./images/03-second-payload.png)
+![Second payload in login form](/SQL%20Injection/Authentication%20Bypass/images/03-second-payload.png)
 
-![Second successful bypass](./images/04-second-bypass.png)
+![Second successful bypass](/SQL%20Injection/Authentication%20Bypass/images/04-second-bypass.png)
 
 ---
 
