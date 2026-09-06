@@ -186,7 +186,6 @@ crackable — `21232f297a57a5a743894a0e4a801fc3` is the MD5 hash of `admin`.
 Here's the complete sequence of payloads used from start to finish, kept
 together as a quick reference / cheat sheet:
 
-![Query cheat sheet](17-query-cheatsheet.png)
 
 ```sql
 SELECT * FROM CAFFAINE WHERE ITEMCODE='1''';
